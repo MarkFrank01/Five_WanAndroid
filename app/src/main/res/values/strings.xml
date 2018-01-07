@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Five_WanAndroid</string>
+
+    <string name="data_loading">玩命加载中~</string>
+    <string name="reload_content">点击重新加载</string>
+    <string name="no_more_data">暂时没有数据~</string>
 </resources>
