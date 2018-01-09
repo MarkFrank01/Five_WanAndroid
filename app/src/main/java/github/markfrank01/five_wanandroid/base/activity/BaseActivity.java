@@ -17,6 +17,7 @@ import github.markfrank01.five_wanandroid.base.view.AbstractView;
 import github.markfrank01.five_wanandroid.di.component.ActivityComponent;
 import github.markfrank01.five_wanandroid.di.component.DaggerActivityComponent;
 import github.markfrank01.five_wanandroid.di.component.DaggerApplicationComponent;
+import github.markfrank01.five_wanandroid.di.module.ActivityModule;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
 import github.markfrank01.five_wanandroid.until.network.NetUtils;
 import github.markfrank01.five_wanandroid.until.network.NetworkBroadcastReceiver;
@@ -66,6 +67,7 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
     private void initActivityComponent() {
         mActivityComponent = DaggerActivityComponent.builder()
                 .applicationComponent(MyApplication.getInstance().getApplicationComponent())
+                .activityModule(new ActivityModule(this))
                 .build();
     }
 

@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Theme Style-->
+    <style name="ThemeTitleTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/theme</item>
+        <item name="colorPrimaryDark">@color/theme</item>
+        <item name="colorPrimary">@color/theme</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black_255</item>
+        <item name="android:windowBackground">@color/white_255</item>
+        <item name="android:itemBackground">@color/white_255</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+
+    <style name="MenuTextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/homepage_color</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 </resources>
