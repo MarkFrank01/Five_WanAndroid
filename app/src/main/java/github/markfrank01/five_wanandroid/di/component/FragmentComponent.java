@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import dagger.Component;
 import github.markfrank01.five_wanandroid.di.module.FragmentModule;
+import github.markfrank01.five_wanandroid.ui.main.fragment.HomePageFragment;
 
 /**
  * Created by MarkFrank01
@@ -14,4 +15,6 @@ import github.markfrank01.five_wanandroid.di.module.FragmentModule;
 public interface FragmentComponent {
 
     Activity getActivity();
+
+    void inject(HomePageFragment fragment);
 }

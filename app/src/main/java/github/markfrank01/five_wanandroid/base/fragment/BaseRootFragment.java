@@ -11,7 +11,7 @@ import github.markfrank01.five_wanandroid.base.presenter.BasePresenter;
  * description : loading state
  */
 
-public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment {
+public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment<T> {
 
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;

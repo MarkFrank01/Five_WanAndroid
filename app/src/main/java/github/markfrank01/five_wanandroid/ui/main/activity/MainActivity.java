@@ -3,6 +3,7 @@ package github.markfrank01.five_wanandroid.ui.main.activity;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity {
     protected void initUI() {
         presenter = new BasePresenter();
         initFragment();
+        selectFragment(0);
     }
 
     @Override
@@ -111,7 +113,7 @@ public class MainActivity extends BaseActivity {
 
 
     /**
-     * ToolBar menu选择
+     * choose ToolBar menu
      *
      * @param item
      * @return
@@ -129,6 +131,56 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * switch Fragment
+     */
+    private void selectFragment(int position){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment currentFragment = fragments.get(position);
+        Fragment lastFragment = fragments.get(lastIndex);
+        lastIndex = position;
+        ft.hide(lastFragment);
+        if (!currentFragment.isAdded()){
+            getSupportFragmentManager().beginTransaction().remove(currentFragment).commit();
+            ft.add(R.id.frame_layout,currentFragment);
+        }
+        ft.show(currentFragment);
+        ft.commitAllowingStateLoss();
+        presenter.setCurrentPage(position);
+    }
+
+
+    /**
+     * bottom select
+     */
+    private void initNavigation() {
+        BottomNavigationViewHelper.disableShiftMode(mBottomNavigation);
+        mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.tab_main:
+                    mFloatingButton.setVisibility(View.VISIBLE);
+                    selectFragment(0);
+                    break;
+                case R.id.tab_knowledge:
+                    mFloatingButton.setVisibility(View.VISIBLE);
+//                    selectFragment(1);
+                    break;
+                case R.id.tab_project:
+                    mFloatingButton.setVisibility(View.VISIBLE);
+//                    selectFragment(2);
+                    break;
+                case R.id.tab_gank:
+                    mFloatingButton.setVisibility(View.GONE);
+//                    selectFragment(3);
+                    break;
+                case R.id.tab_mine:
+                    mFloatingButton.setVisibility(View.GONE);
+//                    selectFragment(4);
+                    break;
+            }
+            return true;
+        });
+    }
 
     @Override
     public void onBackPressedSupport() {
@@ -141,30 +193,4 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /**
-     * bottom select
-     */
-    private void initNavigation() {
-        BottomNavigationViewHelper.disableShiftMode(mBottomNavigation);
-        mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.tab_main:
-                    mFloatingButton.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.tab_knowledge:
-                    mFloatingButton.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.tab_project:
-                    mFloatingButton.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.tab_gank:
-                    mFloatingButton.setVisibility(View.GONE);
-                    break;
-                case R.id.tab_mine:
-                    mFloatingButton.setVisibility(View.GONE);
-                    break;
-            }
-            return true;
-        });
-    }
 }
