@@ -57,6 +57,13 @@ public class Constant {
     public static final String ISLOGIN = "is_login";
 
     /**
+     * data
+     */
+    public static final String LOGINDATA = "login_data";
+    public static final String BANNERDATA = "banner_data";
+    public static final String HOMEPAGEDATA = "homepage_data";
+
+    /**
      * base url
      */
     public static final String WANANDROID = "normal";
