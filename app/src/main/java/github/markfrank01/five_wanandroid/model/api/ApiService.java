@@ -41,6 +41,30 @@ public interface ApiService {
     Observable<BaseResp<UserInfo>> login(@Field("username") String username, @Field("password") String password);
 
     /**
+     * register
+     */
+    @Headers({"baseUrl:normal"})
+    @POST("user/register")
+    @FormUrlEncoded
+    Observable<BaseResp<UserInfo>> register(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
+
+    /**
+     * get collect list
+     */
+    @Headers({"basUrl:normal"})
+    @GET("lg/collect/list/{id}/json")
+    Observable<BaseResp<HomePageArticleBean>> getCollectList(@Path("id") int id);
+
+    /**
+     * cancel collect list
+     */
+    @Headers({"baseUrl:normal"})
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResp<HomePageArticleBean>> cancelCollectArticleList(@Path("id") int id,@Path("originId") int originId);
+
+
+    /**
      * collect Article
      */
     @Headers({"baseUrl:normal"})
@@ -53,4 +77,5 @@ public interface ApiService {
     @Headers({"baseUrl:normal"})
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResp> cancelCollectArticle(@Path("id") int id);
+
 }

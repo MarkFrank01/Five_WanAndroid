@@ -17,6 +17,8 @@ import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
 import github.markfrank01.five_wanandroid.model.cookie.CookiesManager;
 import github.markfrank01.five_wanandroid.ui.login.LoginActivity;
+import github.markfrank01.five_wanandroid.ui.mine.activity.AboutUsActivity;
+import github.markfrank01.five_wanandroid.ui.mine.activity.MyCollectActivity;
 import github.markfrank01.five_wanandroid.until.app.JumpUtil;
 import github.markfrank01.five_wanandroid.until.app.SharedPreferenceUtil;
 import github.markfrank01.five_wanandroid.until.app.ToastUtil;
@@ -70,9 +72,15 @@ public class PersonalFragment extends BaseFragment {
                 break;
             case R.id.view_collect:
                 //jump to collect after login
+                if (isLogin){
+                    JumpUtil.overlay(context,MyCollectActivity.class);
+                }else {
+                    ToastUtil.show(activity,getString(R.string.please_login));
+                }
                 break;
             case R.id.view_about:
                 //jump to about
+                JumpUtil.overlay(context,AboutUsActivity.class);
                 break;
             case R.id.tv_logout:
                 dialog = new CommonDialog.Builder(activity)
@@ -104,6 +112,6 @@ public class PersonalFragment extends BaseFragment {
         initData();
         CookiesManager.clearAllCookies();
         SharedPreferenceUtil.put(activity, Constant.ISLOGIN, false);
-        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
+        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGOUTSUCCESS, ""));
     }
 }

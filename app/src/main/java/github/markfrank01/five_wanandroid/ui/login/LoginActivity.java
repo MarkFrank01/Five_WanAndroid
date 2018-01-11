@@ -16,6 +16,7 @@ import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
 import github.markfrank01.five_wanandroid.presenter.login.LoginPresenter;
+import github.markfrank01.five_wanandroid.until.app.JumpUtil;
 import github.markfrank01.five_wanandroid.until.app.SharedPreferenceUtil;
 import github.markfrank01.five_wanandroid.until.app.ToastUtil;
 
@@ -80,6 +81,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         switch (view.getId()) {
             case R.id.tv_register:
                 //jump to register
+                JumpUtil.overlay(context,RegisterActivity.class);
+                finish();
                 break;
             case R.id.btn_login:
                 if (check()) {

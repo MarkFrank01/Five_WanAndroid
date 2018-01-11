@@ -22,6 +22,12 @@
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
 
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_54</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
 
     <!-- 全局Dialog样式 -->
     <style name="MyDialog" parent="@android:style/Theme.Dialog">
@@ -45,6 +51,10 @@
         <item name="android:textColor">@color/homepage_color</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--搜索栏 光标颜色-->
+    <style name="EditText" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">@color/white_90</item>
+    </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 </resources>

@@ -8,7 +8,7 @@ package github.markfrank01.five_wanandroid.model.constant;
 public class MessageEvent {
 
     public int code;
-    public String mess;
+    private String mess;
     private String name;
 
     public MessageEvent(int code, String mess) {
