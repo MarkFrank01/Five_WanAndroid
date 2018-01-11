@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import dagger.Component;
 import github.markfrank01.five_wanandroid.di.module.ActivityModule;
+import github.markfrank01.five_wanandroid.ui.login.LoginActivity;
 
 /**
  * Created by MarkFrank01
@@ -15,5 +16,6 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
+    void inject(LoginActivity activity);
 
 }

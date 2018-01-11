@@ -24,6 +24,8 @@ import github.markfrank01.five_wanandroid.base.presenter.BasePresenter;
 import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
+import github.markfrank01.five_wanandroid.ui.main.fragment.HomePageFragment;
+import github.markfrank01.five_wanandroid.ui.mine.fragment.PersonalFragment;
 import github.markfrank01.five_wanandroid.until.app.BottomNavigationViewHelper;
 import github.markfrank01.five_wanandroid.until.app.SharedPreferenceUtil;
 import github.markfrank01.five_wanandroid.until.app.ToastUtil;
@@ -67,7 +69,8 @@ public class MainActivity extends BaseActivity {
 
     private void initFragment() {
         fragments = new ArrayList<>();
-
+        fragments.add(HomePageFragment.getInstance());
+        fragments.add(PersonalFragment.getInstance());
     }
 
 
@@ -176,6 +179,7 @@ public class MainActivity extends BaseActivity {
                 case R.id.tab_mine:
                     mFloatingButton.setVisibility(View.GONE);
 //                    selectFragment(4);
+                    selectFragment(1);
                     break;
             }
             return true;
