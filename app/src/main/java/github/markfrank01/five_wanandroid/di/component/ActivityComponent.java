@@ -6,6 +6,7 @@ import dagger.Component;
 import github.markfrank01.five_wanandroid.di.module.ActivityModule;
 import github.markfrank01.five_wanandroid.ui.login.LoginActivity;
 import github.markfrank01.five_wanandroid.ui.login.RegisterActivity;
+import github.markfrank01.five_wanandroid.ui.main.activity.ArticleDetailsActivity;
 import github.markfrank01.five_wanandroid.ui.mine.activity.MyCollectActivity;
 
 /**
@@ -24,4 +25,5 @@ public interface ActivityComponent {
 
     void inject(MyCollectActivity activity);
 
+    void inject(ArticleDetailsActivity activity);
 }

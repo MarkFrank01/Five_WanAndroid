@@ -46,6 +46,7 @@
         <activity android:name=".ui.login.RegisterActivity"/>
         <activity android:name=".ui.mine.activity.AboutUsActivity"/>
         <activity android:name=".ui.mine.activity.MyCollectActivity"/>
+        <activity android:name=".ui.main.activity.ArticleDetailsActivity"/>
     </application>
 
 </manifest>
