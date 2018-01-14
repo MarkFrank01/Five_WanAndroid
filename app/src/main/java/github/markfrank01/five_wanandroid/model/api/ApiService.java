@@ -2,6 +2,7 @@ package github.markfrank01.five_wanandroid.model.api;
 
 import java.util.List;
 
+import github.markfrank01.five_wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import github.markfrank01.five_wanandroid.data.login.UserInfo;
 import github.markfrank01.five_wanandroid.data.main.BannerBean;
 import github.markfrank01.five_wanandroid.data.main.HomePageArticleBean;
@@ -13,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by WJC on 2018/9/19.
@@ -78,4 +80,10 @@ public interface ApiService {
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResp> cancelCollectArticle(@Path("id") int id);
 
+    /**
+     * single knowledge list
+     */
+    @Headers({"baseUrl:normal"})
+    @GET("article/list/{page}/json")
+    Observable<BaseResp<KnowledgeClassifyListBean>> getKnowledgeClassifyList(@Path("page") int page , @Query("cid") int id);
 }

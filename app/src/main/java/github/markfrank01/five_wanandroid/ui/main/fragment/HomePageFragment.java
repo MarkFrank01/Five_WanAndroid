@@ -32,7 +32,10 @@ import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
 import github.markfrank01.five_wanandroid.presenter.main.HomePagePresenter;
+import github.markfrank01.five_wanandroid.ui.login.LoginActivity;
+import github.markfrank01.five_wanandroid.ui.main.activity.ArticleDetailsActivity;
 import github.markfrank01.five_wanandroid.ui.main.adapter.HomePageAdapter;
+import github.markfrank01.five_wanandroid.until.app.JumpUtil;
 import github.markfrank01.five_wanandroid.until.app.LogUtil;
 import github.markfrank01.five_wanandroid.until.app.SharedPreferenceUtil;
 import github.markfrank01.five_wanandroid.until.app.ToastUtil;
@@ -172,6 +175,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
             bundle.putString(Constant.ARTICLE_LINK, linkList.get(position));
             if (!TextUtils.isEmpty(linkList.get(position))) {
                 //jump to ArticleDetails
+                JumpUtil.overlay(context,ArticleDetailsActivity.class,bundle);
             }
         });
 
@@ -209,6 +213,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     public void collectArticleErr(String info) {
         ToastUtil.show(activity,getString(R.string.please_login));
         //jump to login
+        JumpUtil.overlay(activity,LoginActivity.class);
 
     }
 
@@ -250,7 +255,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     }
 
     @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putString(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
         bundle.putString(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
@@ -258,10 +263,11 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         bundle.putBoolean(Constant.ARTICLE_IS_COLLECT, mAdapter.getData().get(position).isCollect());
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
         //jump to ArticleDetails
+        startActivity(new Intent(activity,ArticleDetailsActivity.class).putExtras(bundle),options.toBundle());
     }
 
     @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         clickPosition = position;
         switch (view.getId()){
             case R.id.image_collect:
@@ -274,6 +280,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
                 } else {
                     ToastUtil.show(activity, getString(R.string.please_login));
                     //jump to login
+                    JumpUtil.overlay(activity,LoginActivity.class);
                 }
                 break;
             case R.id.tv_type:

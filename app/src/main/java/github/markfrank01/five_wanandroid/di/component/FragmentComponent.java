@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import dagger.Component;
 import github.markfrank01.five_wanandroid.di.module.FragmentModule;
+import github.markfrank01.five_wanandroid.ui.knowledge.fragment.KnowledgeListFragment;
 import github.markfrank01.five_wanandroid.ui.main.fragment.HomePageFragment;
 
 /**
@@ -17,4 +18,6 @@ public interface FragmentComponent {
     Activity getActivity();
 
     void inject(HomePageFragment fragment);
+
+    void inject(KnowledgeListFragment fragment);
 }

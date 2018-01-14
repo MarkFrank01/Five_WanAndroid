@@ -1,6 +1,7 @@
 package github.markfrank01.five_wanandroid.ui.mine.activity;
 
 import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import github.markfrank01.five_wanandroid.contract.mine.CollectContract;
 import github.markfrank01.five_wanandroid.data.main.HomePageArticleBean;
 import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.presenter.mine.CollectPresenter;
+import github.markfrank01.five_wanandroid.ui.main.activity.ArticleDetailsActivity;
 import github.markfrank01.five_wanandroid.ui.mine.adapter.CollectAdapter;
 import github.markfrank01.five_wanandroid.until.app.ToastUtil;
 
@@ -121,6 +123,7 @@ public class MyCollectActivity extends BaseRootActivity<CollectPresenter> implem
         bundle.putBoolean(Constant.ARTICLE_IS_COLLECT,Constant.TRUE);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity,view,getString(R.string.share_view));
         //jump to ArticleDetail
+        startActivity(new Intent(activity,ArticleDetailsActivity.class).putExtras(bundle),options.toBundle());
     }
 
     @Override

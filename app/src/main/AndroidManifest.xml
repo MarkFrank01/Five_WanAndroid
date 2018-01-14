@@ -47,6 +47,7 @@
         <activity android:name=".ui.mine.activity.AboutUsActivity"/>
         <activity android:name=".ui.mine.activity.MyCollectActivity"/>
         <activity android:name=".ui.main.activity.ArticleDetailsActivity"/>
+        <activity android:name=".ui.knowledge.activity.KnowledgeClassifyActivity"/>
     </application>
 
 </manifest>

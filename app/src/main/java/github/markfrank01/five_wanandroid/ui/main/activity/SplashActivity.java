@@ -83,7 +83,7 @@ public class SplashActivity extends BaseActivity {
 
         JumpUtil.overlay(context, MainActivity.class);
         overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
-//        finish();
+        finish();
         isIn = true;
     }
 
