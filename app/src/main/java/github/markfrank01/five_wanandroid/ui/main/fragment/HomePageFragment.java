@@ -32,6 +32,7 @@ import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
 import github.markfrank01.five_wanandroid.presenter.main.HomePagePresenter;
+import github.markfrank01.five_wanandroid.ui.knowledge.activity.KnowledgeClassifyActivity;
 import github.markfrank01.five_wanandroid.ui.login.LoginActivity;
 import github.markfrank01.five_wanandroid.ui.main.activity.ArticleDetailsActivity;
 import github.markfrank01.five_wanandroid.ui.main.adapter.HomePageAdapter;
@@ -285,6 +286,15 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
                 break;
             case R.id.tv_type:
                 //jump to Knowledge
+                ActivityOptions options =ActivityOptions.makeSceneTransitionAnimation(activity,view,getString(R.string.share_view));
+                Intent intent = new Intent(activity,KnowledgeClassifyActivity.class);
+                Bundle bundle =  new Bundle();
+                bundle.putBoolean(Constant.HOMEPAGE_TAG,true);
+                bundle.putInt(Constant.HOMEPAGE_CID,mAdapter.getData().get(position).getChapterId());
+                bundle.putString(Constant.HOMEPAGE_CNAME, mAdapter.getData().get(position).getChapterName());
+                bundle.putString(Constant.HOMEPAGE_SUPERCNAME, mAdapter.getData().get(position).getSuperChapterName());
+                intent.putExtras(bundle);
+                startActivity(intent,options.toBundle());
                 break;
         }
     }

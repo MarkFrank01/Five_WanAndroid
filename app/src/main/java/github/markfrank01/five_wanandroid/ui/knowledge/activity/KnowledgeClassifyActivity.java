@@ -1,16 +1,21 @@
 package github.markfrank01.five_wanandroid.ui.knowledge.activity;
 
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.flyco.tablayout.SlidingTabLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import github.markfrank01.five_wanandroid.R;
 import github.markfrank01.five_wanandroid.base.activity.BaseActivity;
 import github.markfrank01.five_wanandroid.base.adapter.SimpleFragmentStateAdapter;
@@ -18,6 +23,8 @@ import github.markfrank01.five_wanandroid.data.knowledge.KnowledgeListBean;
 import github.markfrank01.five_wanandroid.model.constant.Constant;
 import github.markfrank01.five_wanandroid.model.constant.EventConstant;
 import github.markfrank01.five_wanandroid.model.constant.MessageEvent;
+import github.markfrank01.five_wanandroid.ui.knowledge.fragment.KnowledgeListFragment;
+import github.markfrank01.five_wanandroid.until.app.LogUtil;
 
 /**
  * Created by WJC on 2018/10/7.
@@ -87,16 +94,42 @@ public class KnowledgeClassifyActivity extends BaseActivity {
             getSupportActionBar().setTitle(knowledgeListBean.getName());
             for (KnowledgeListBean.ChildrenBean childrenBean : knowledgeListBean.getChildren()) {
                 titles.add(childrenBean.getName());
-
+                fragments.add(KnowledgeListFragment.getInstance(childrenBean.getId()));
             }
         }
+        initTabAndPager(titles.toArray(new String[titles.size()]));
     }
 
     /**
      * by homepage list
      */
-    private void getHomepageBundleData(){
-
+    private void getHomepageBundleData() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            int cId = bundle.getInt(Constant.HOMEPAGE_CID);
+            String cName = bundle.getString(Constant.HOMEPAGE_CNAME);
+            String superCName = bundle.getString(Constant.HOMEPAGE_SUPERCNAME);
+            fragments.clear();
+            getSupportActionBar().setTitle(superCName);
+            titles.add(cName);
+            LogUtil.e("CNAME:" + cName);
+            fragments.add(KnowledgeListFragment.getInstance(cId));
+        }
+        initTabAndPager(titles.toArray(new String[titles.size()]));
     }
 
+    @OnClick
+    void click(View view) {
+        switch (view.getId()) {
+            case R.id.float_button:
+                EventBus.getDefault().post(new MessageEvent(EventConstant.KNOWLEDGECLASSIFYSCROLLTOTOP, ""));
+                break;
+        }
+    }
+
+    private void initTabAndPager(String[] titles) {
+        mKnowledgeViewpager.setAdapter(adapter);
+        mKnowledgeTabLayout.setViewPager(mKnowledgeViewpager, titles);
+        adapter.notifyDataSetChanged();
+    }
 }
